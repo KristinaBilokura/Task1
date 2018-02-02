@@ -47,18 +47,18 @@ public class Test {
         driver.findElement(By.xpath("//div[@class='Am Al editable LW-avf']")).sendKeys(MESSAGE);
         driver.findElement(By.xpath("//div[@class='T-I J-J5-Ji aoO T-I-atl L3']")).click();
         driver.findElement(By.xpath("//a[@href='https://mail.google.com/mail/u/0/#sent']")).click();
-       // driver.findElement(By.linkText("Надіслані")).click();
+        // driver.findElement(By.linkText("Надіслані")).click();
         //Assert.assertFalse(null== driver.findElement(By.name("Kristina Bilokura")));
-        assertNotNull(driver.findElement(By.name("Kristina Bilokura")));
+        assertNotNull(driver.findElement(By.xpath("//*[@email='" + String.format("%s", ADDRESSE) + "']")));
 
         Thread.sleep(1000);
-        (new WebDriverWait(driver, 10))
+        (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@role='main']//div[@role='checkbox']"))).click();
         driver.findElement(By.xpath("//div[@gh='tm']//div[@act='10']")).click();
         driver.findElement(By.name("ok")).click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
-            driver.findElement(By.name("Kristina Bilokura"));
+            driver.findElement(By.xpath("//*[@email='" + String.format("%s", ADDRESSE) + "']"));
             Assert.fail("expecting NoSuchElementException here");
         } catch (Exception e) {
         }
